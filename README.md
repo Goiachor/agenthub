@@ -129,6 +129,9 @@ agenthub/
   <a href="#agenthub-cli-ahub">English</a> | <b>简体中文</b>
 </p>
 
+[![AI Assisted](https://img.shields.io/badge/AI--Assisted-ChatGPT-74aa9c?logo=openai&logoColor=white)](https://openai.com)
+    [![Co-authored with AI](https://img.shields.io/badge/Co--authored_with-AI_Agent-blueviolet)](https://github.com)
+
 专为同时运行与对比多个 AI Agent CLI（如 Claude Code, Aider, OpenCode, Agy, Python Agent 等）设计的轻量级、无冗余并列控制台。
 
 ---
@@ -218,6 +221,13 @@ python3 server.py
 - **⌫ Clear All**：一键清空三个窗口的终端屏幕。
 
 ---
+
+## 🤝 Acknowledgements / 致谢                                                                                                                                          
+
+    本项目由 **Goiachor** 发起与架构设计，并借助 AI 编码智能体（ChatGPT / Claude / Antigravity）协同完成代码编写、重构与文档国际化。
+
+    - **Primary Author**: [Goiachor](https://github.com/Goiachor)
+    - **AI Pairing**: OpenAI ChatGPT, Claude Code & Antigravity
 
 ## 📄 License
 
