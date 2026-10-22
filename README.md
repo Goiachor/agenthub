@@ -4,6 +4,9 @@
   <b>English</b> | <a href="#-简体中文">简体中文</a>
 </p>
 
+[![AI Assisted](https://img.shields.io/badge/AI--Assisted-ChatGPT-74aa9c?logo=openai&logoColor=white)](https://openai.com)
+[![Co-authored with AI](https://img.shields.io/badge/Co--authored_with-AI_Agent-blueviolet)](https://github.com)
+
 A lightweight, zero-bloat CLI dashboard designed for concurrently running and comparing multiple AI Agent CLIs (such as Claude Code, Aider, OpenCode, Agy, Python Agents, etc.) side by side.
 
 ---
