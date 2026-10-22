@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Agent Parallel CLI Hub</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="/static/xterm.css">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div id="app-container">
+    <!-- Top Navigation Bar -->
+    <header id="top-bar">
+      <div class="brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-title">Multi-Agent Parallel CLI Hub</span>
+        <span class="brand-badge" id="running-count-badge">0 / 3 Running</span>
+      </div>
+
+      <div class="top-center">
+        <span>Workspace:</span>
+        <span class="cwd-label" id="top-cwd" title="Current Working Directory">...</span>
+      </div>
+
+      <div class="top-actions">
+        <button class="btn btn-secondary" id="btn-start-all" title="Start all configured agents">
+          ▶ Start All
+        </button>
+        <button class="btn btn-secondary" id="btn-stop-all" title="Stop all running agents">
+          ⏹ Stop All
+        </button>
+        <button class="btn btn-secondary" id="btn-interrupt-all" title="Interrupt all agents (Esc / Ctrl+C)">
+          🛑 Interrupt All
+        </button>
+        <button class="btn btn-secondary" id="btn-clear-all" title="Clear all screens">
+          ⌫ Clear All
+        </button>
+      </div>
+    </header>
+
+    <!-- Main 3 Parallel Windows Grid -->
+    <main id="main-grid">
+      <!-- Window 1: Agent 1 -->
+      <section class="agent-card" id="card-0" data-slot="0">
+        <div class="agent-header">
+          <div class="agent-meta-row">
+            <div class="agent-title-wrap">
+              <span class="agent-num-tag">#1</span>
+              <span class="agent-name">Agent 1</span>
+            </div>
+            <div class="agent-status-pill" id="status-pill-0">
+              <span class="status-dot"></span>
+              <span class="status-text">Stopped</span>
+            </div>
+          </div>
+          <div class="agent-cmd-row">
+            <input type="text" class="cmd-input" id="cmd-input-0" value="codex" placeholder="CLI command (e.g. codex, claude, opencode)">
+            <select class="preset-selector" data-slot="0">
+              <option value="" disabled selected>Select preset</option>
+              <option value="codex">codex (OpenAI Codex)</option>
+              <option value="claude">claude (Claude Code)</option>
+              <option value="opencode">opencode</option>
+              <option value="agy">agy (Antigravity CLI)</option>
+              <option value="gemini">gemini</option>
+              <option value="aider">aider</option>
+              <option value="zsh">zsh</option>
+              <option value="python3 -i">python</option>
+            </select>
+            <button class="btn btn-success btn-start-slot" data-slot="0" id="btn-toggle-0">
+              ▶ Start
+            </button>
+            <button class="btn btn-secondary btn-interrupt-slot" data-slot="0" title="Interrupt current response (Esc / Ctrl+C)">
+              🛑 Interrupt
+            </button>
+            <button class="btn btn-secondary btn-copy-slot" data-slot="0" title="Copy window content (copies selection if selected, otherwise entire terminal)">
+              📋 Copy
+            </button>
+            <button class="btn btn-secondary btn-clear-slot" data-slot="0" title="Clear screen">
+              ⌫
+            </button>
+          </div>
+        </div>
+
+        <div class="terminal-wrapper">
+          <div class="terminal-container" id="terminal-0"></div>
+        </div>
+
+        <div class="agent-input-bar">
+          <input type="text" class="slot-input" id="input-0" placeholder="Send command (Press Enter to send to Agent 1)...">
+          <button class="btn btn-primary btn-send-slot" data-slot="0">
+            Send
+          </button>
+        </div>
+      </section>
+
+      <!-- Window 2: Agent 2 -->
+      <section class="agent-card" id="card-1" data-slot="1">
+        <div class="agent-header">
+          <div class="agent-meta-row">
+            <div class="agent-title-wrap">
+              <span class="agent-num-tag">#2</span>
+              <span class="agent-name">Agent 2</span>
+            </div>
+            <div class="agent-status-pill" id="status-pill-1">
+              <span class="status-dot"></span>
+              <span class="status-text">Stopped</span>
+            </div>
+          </div>
+          <div class="agent-cmd-row">
+            <input type="text" class="cmd-input" id="cmd-input-1" value="claude" placeholder="CLI command (e.g. codex, claude, opencode)">
+            <select class="preset-selector" data-slot="1">
+              <option value="" disabled selected>Select preset</option>
+              <option value="codex">codex (OpenAI Codex)</option>
+              <option value="claude">claude (Claude Code)</option>
+              <option value="opencode">opencode</option>
+              <option value="agy">agy (Antigravity CLI)</option>
+              <option value="gemini">gemini</option>
+              <option value="aider">aider</option>
+              <option value="zsh">zsh</option>
+              <option value="python3 -i">python</option>
+            </select>
+            <button class="btn btn-success btn-start-slot" data-slot="1" id="btn-toggle-1">
+              ▶ Start
+            </button>
+            <button class="btn btn-secondary btn-interrupt-slot" data-slot="1" title="Interrupt current response (Esc / Ctrl+C)">
+              🛑 Interrupt
+            </button>
+            <button class="btn btn-secondary btn-copy-slot" data-slot="1" title="Copy window content (copies selection if selected, otherwise entire terminal)">
+              📋 Copy
+            </button>
+            <button class="btn btn-secondary btn-clear-slot" data-slot="1" title="Clear screen">
+              ⌫
+            </button>
+          </div>
+        </div>
+
+        <div class="terminal-wrapper">
+          <div class="terminal-container" id="terminal-1"></div>
+        </div>
+
+        <div class="agent-input-bar">
+          <input type="text" class="slot-input" id="input-1" placeholder="Send command (Press Enter to send to Agent 2)...">
+          <button class="btn btn-primary btn-send-slot" data-slot="1">
+            Send
+          </button>
+        </div>
+      </section>
+
+      <!-- Window 3: Agent 3 -->
+      <section class="agent-card" id="card-2" data-slot="2">
+        <div class="agent-header">
+          <div class="agent-meta-row">
+            <div class="agent-title-wrap">
+              <span class="agent-num-tag">#3</span>
+              <span class="agent-name">Agent 3</span>
+            </div>
+            <div class="agent-status-pill" id="status-pill-2">
+              <span class="status-dot"></span>
+              <span class="status-text">Stopped</span>
+            </div>
+          </div>
+          <div class="agent-cmd-row">
+            <input type="text" class="cmd-input" id="cmd-input-2" value="opencode" placeholder="CLI command (e.g. codex, claude, opencode)">
+            <select class="preset-selector" data-slot="2">
+              <option value="" disabled selected>Select preset</option>
+              <option value="codex">codex (OpenAI Codex)</option>
+              <option value="claude">claude (Claude Code)</option>
+              <option value="opencode">opencode</option>
+              <option value="agy">agy (Antigravity CLI)</option>
+              <option value="gemini">gemini</option>
+              <option value="aider">aider</option>
+              <option value="zsh">zsh</option>
+              <option value="python3 -i">python</option>
+            </select>
+            <button class="btn btn-success btn-start-slot" data-slot="2" id="btn-toggle-2">
+              ▶ Start
+            </button>
+            <button class="btn btn-secondary btn-interrupt-slot" data-slot="2" title="Interrupt current response (Esc / Ctrl+C)">
+              🛑 Interrupt
+            </button>
+            <button class="btn btn-secondary btn-copy-slot" data-slot="2" title="Copy window content (copies selection if selected, otherwise entire terminal)">
+              📋 Copy
+            </button>
+            <button class="btn btn-secondary btn-clear-slot" data-slot="2" title="Clear screen">
+              ⌫
+            </button>
+          </div>
+        </div>
+
+        <div class="terminal-wrapper">
+          <div class="terminal-container" id="terminal-2"></div>
+        </div>
+
+        <div class="agent-input-bar">
+          <input type="text" class="slot-input" id="input-2" placeholder="Send command (Press Enter to send to Agent 3)...">
+          <button class="btn btn-primary btn-send-slot" data-slot="2">
+            Send
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Broadcast Shared Input Section -->
+    <footer id="broadcast-panel">
+      <div class="broadcast-header">
+        <div class="broadcast-title">
+          <span>📢 Broadcast Input (Send prompt to multiple agents)</span>
+        </div>
+
+        <div class="broadcast-targets">
+          <label class="target-checkbox-label">
+            <input type="checkbox" id="target-0" checked>
+            <span>Agent 1</span>
+            <span class="target-status-tag" id="target-tag-0">Stopped</span>
+          </label>
+          <label class="target-checkbox-label">
+            <input type="checkbox" id="target-1" checked>
+            <span>Agent 2</span>
+            <span class="target-status-tag" id="target-tag-1">Stopped</span>
+          </label>
+          <label class="target-checkbox-label">
+            <input type="checkbox" id="target-2" checked>
+            <span>Agent 3</span>
+            <span class="target-status-tag" id="target-tag-2">Stopped</span>
+          </label>
+
+          <button class="btn btn-secondary" id="btn-toggle-all-targets" style="padding: 2px 8px; font-size: 11px;">
+            Toggle All
+          </button>
+
+          <label class="target-checkbox-label" title="Press Enter to send prompt, Shift+Enter for new line" style="margin-left: 8px;">
+            <input type="checkbox" id="broadcast-enter-to-send" checked>
+            <span>Enter to Send (Shift+Enter for newline)</span>
+          </label>
+
+          <label class="target-checkbox-label" title="Automatically trigger Enter in terminal after sending prompt">
+            <input type="checkbox" id="broadcast-auto-enter" checked>
+            <span>Auto-Execute (Enter)</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="broadcast-body">
+        <div class="broadcast-textarea-wrap">
+          <textarea
+            id="broadcast-textarea"
+            placeholder="Enter shared prompt, press Enter to broadcast (Shift+Enter for newline), automatically executing across selected agents..."
+          ></textarea>
+        </div>
+        <button class="broadcast-send-btn" id="btn-broadcast-send">
+          <span>🚀 Broadcast to Selected Agents</span>
+          <span class="btn-subtext">Enter / ⌘ + Enter</span>
+        </button>
+      </div>
+
+      <div class="broadcast-footer">
+        <div class="prompt-history-list" id="prompt-history-list">
+          <span style="font-size: 11px; color: var(--text-dim);">History:</span>
+          <!-- Dynamic history pills added here -->
+        </div>
+        <div>
+          <button class="btn btn-secondary" id="btn-clear-broadcast-input" style="padding: 2px 8px; font-size: 11px;">
+            Clear Input
+          </button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast">
+    <span id="toast-icon">✓</span>
+    <span id="toast-msg">Success</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/xterm.js"></script>
+  <script src="/static/xterm-addon-fit.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
