@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agenthub"
+version = "0.1.0"
+description = "agenthub: Multi-Agent Parallel CLI Hub - Concurrently run and compare multiple AI Agent CLIs"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "agenthub Contributors"}
+]
+keywords = ["ai", "agent", "cli", "terminal", "pty", "multi-agent", "xterm"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: User Interfaces",
+    "Topic :: Terminals",
+]
+dependencies = [
+    "tornado>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Goiachor/agenthub"
+Repository = "https://github.com/Goiachor/agenthub.git"
+
+[project.scripts]
+ahub = "ahub.server:main"
+agenthub = "ahub.server:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ahub*"]
+
+[tool.setuptools.package-data]
+ahub = ["static/*"]

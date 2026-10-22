@@ -20,5 +20,5 @@ if ! $PYTHON_CMD -c "import tornado" 2>/dev/null; then
     $PYTHON_CMD -m pip install tornado
 fi
 
-echo "Starting Multi-Agent Parallel CLI Hub..."
-exec $PYTHON_CMD server.py
+echo "Starting Multi-Agent Parallel CLI Hub (ahub)..."
+exec $PYTHON_CMD server.py "$@"
